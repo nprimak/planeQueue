@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="aircraftApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Plane Queue</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-controller="AirCraftController">
+<h1>Aircraft Control System</h1>
+<nav>
+    <ul>
+        <li ng-class="{'selected': managingAircraft}" ng-click="managingAircraft = true">Manage Aircraft</li>
+        <li ng-class="{'selected': !managingAircraft}" ng-click="managingAircraft = false">View Aircraft Queue</li>
+    </ul>
+</nav>
+<main id="queue" ng-hide="managingAircraft">
+    <ul ng-repeat="aircraft in aircrafts track by $index" class="number">
+        <li>#{{$index+1}}&nbsp;&nbsp;{{aircraft.size}}&nbsp;{{aircraft.type}}&nbsp;plane</li>
+    </ul>
+</main>
+<main id="manage" ng-show="managingAircraft">
+    <p id="error-message"></p>
+    <p id="message"></p>
+    <button ng-click="systemLaunched = true" ng-hide="systemLaunched" class="green-btn">Launch System</button>
+    <div class="select-aircraft" ng-show="systemLaunched">
+        <label for="size">Size</label>
+        <select id="size" ng-model="chosenSize"  ng-options="size as size for size in aircraftSizes">
+        </select>
+        <label for="type">Type</label>
+        <select id="type" ng-model="chosenType" ng-options="type as type for type in aircraftTypes">
+        </select>
+        <button ng-click="queueAircraft()" ng-show="systemLaunched" class="blue-btn">Queue Aircraft</button>
+    </div>
+    <button ng-click="deQueueAircraft()" ng-show="systemLaunched && aircrafts.length > 0" class="gray-btn" >De-Queue Aircraft</button>
+    <br><br>
+    <button ng-click="systemLaunched = false" ng-show="systemLaunched" class="red-btn">Shut Down System</button>
+</main>
+
+</body>
+</html>

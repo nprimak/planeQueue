@@ -1,0 +1,105 @@
+$red: #C70217;
+$blue: #1B3F7A;
+$green: #1D7F3A;
+$gray: #555;
+
+.hidden {
+  display:none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+nav {
+  border-bottom: 3px solid darkgray;
+  height: 55px;
+  display:block;
+  text-align:center;
+    ul {
+    display:inline-block;
+    li {
+      float: left;
+      list-style-type: none;
+      margin-top: 0px;
+      margin-left: 30px;
+      color: darken(darkgray, 15%);
+      padding:10px;
+      &:hover, &.selected {
+        font-weight: bold;
+        color:white;
+        background-color: darkgray;
+      }
+    }
+  }
+}
+
+.select-aircraft {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+;
+}
+
+main {
+  text-align:center;
+  margin: 25px auto;
+  width: 50%;
+}
+
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  color: white;
+  width:95%;
+  height: 40px;
+  margin:5px;
+}
+
+.number {
+  list-style-type: none;
+}
+
+#error-message {
+  color: $red;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.red-btn {
+  background-color: $red;
+
+  &:hover {
+    background-color: darken($red, 5%);
+  }
+}
+
+.green-btn {
+  background-color: $green;
+
+  &:hover {
+    background-color: darken($green, 5%);
+  }
+}
+
+.blue-btn {
+  background-color: $blue;
+
+  &:hover {
+    background-color: darken($blue, 5%);
+  }
+
+}
+
+.gray-btn {
+  background-color: $gray;
+
+  &:hover {
+    background-color: darken($gray, 5%);
+  }
+}

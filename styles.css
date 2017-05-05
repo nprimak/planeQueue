@@ -1,0 +1,76 @@
+.hidden {
+  display: none; }
+
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+h1 {
+  text-transform: uppercase;
+  text-align: center; }
+
+nav {
+  border-bottom: 3px solid darkgray;
+  height: 55px;
+  display: block;
+  text-align: center; }
+  nav ul {
+    display: inline-block; }
+    nav ul li {
+      float: left;
+      list-style-type: none;
+      margin-top: 0px;
+      margin-left: 30px;
+      color: #838383;
+      padding: 10px; }
+      nav ul li:hover, nav ul li.selected {
+        font-weight: bold;
+        color: white;
+        background-color: darkgray; }
+
+.select-aircraft {
+  border: 1px solid darkgray;
+  border-radius: 5px; }
+
+main {
+  text-align: center;
+  margin: 25px auto;
+  width: 50%; }
+
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  color: white;
+  width: 95%;
+  height: 40px;
+  margin: 5px; }
+
+.number {
+  list-style-type: none; }
+
+#error-message {
+  color: #C70217;
+  font-weight: bold;
+  margin-bottom: 25px; }
+
+.red-btn {
+  background-color: #C70217; }
+  .red-btn:hover {
+    background-color: #ae0214; }
+
+.green-btn {
+  background-color: #1D7F3A; }
+  .green-btn:hover {
+    background-color: #186a31; }
+
+.blue-btn {
+  background-color: #1B3F7A; }
+  .blue-btn:hover {
+    background-color: #163465; }
+
+.gray-btn {
+  background-color: #555; }
+  .gray-btn:hover {
+    background-color: #484848; }
+
+/*# sourceMappingURL=styles.css.map */

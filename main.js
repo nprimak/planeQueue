@@ -14,7 +14,7 @@ aircraftApp.controller('AirCraftController', function AirCraftController($scope)
     $scope.queueAircraft = function() {
         var error = document.getElementById('error-message');
         if ($scope.chosenType && $scope.chosenSize){ //check that user selected a aircraft type and aircraft size
-            error.innerHTML = '';  //clear error message since there is no longer an error
+            error.innerHTML = '';
             var message =  document.getElementById('message');
             $scope.aircrafts.unshift({size: $scope.chosenSize.toLowerCase(), type: $scope.chosenType.toLowerCase()}); //unshift will add to beginning of aircraft list
             message.innerHTML = $scope.chosenSize + ' ' + $scope.chosenType + ' plane has been added to the aircraft queue.';  // message tells you plane has been added
@@ -25,28 +25,30 @@ aircraftApp.controller('AirCraftController', function AirCraftController($scope)
 
     // the button to call this function will disappear from UI if no aircrafts are in the queue
     $scope.deQueueAircraft = function() {
-        // all potential dequeud aircraft are set to false, and updated if they exist after the loop.
+        // creating these variables made it straightforward to overwrite them based on index, and allowed me to set all of them in just 1 loop
         var lastLargePassengerAircraft = false;
         var lastPassengerAircraft = false;
         var lastLargeCargoAircraft = false;
         var lastCargoAircraft = false;
-        angular.forEach($scope.aircrafts, function(aircraft, index){ // loops through all aircraft
+        angular.forEach($scope.aircrafts, function(aircraft, index){ // index is needed for splicing aircraft from the array
             if(aircraft.type == 'passenger'){
                 lastPassengerAircraft = index; //updates to last passenger aircraft in the queue. overwriting by index guarantees earliest added to queue will be removed
                 if(aircraft.size == 'large'){
-                    lastLargePassengerAircraft = index; // updates to last large aircraft in the queue
+                    lastLargePassengerAircraft = index;
                 }
             }
             if(aircraft.type == 'cargo'){
-                lastCargoAircraft = index; // same as above, but for cargo
+                lastCargoAircraft = index;
                 if(aircraft.size == 'large') {
                     lastLargeCargoAircraft = index;
                 }
             }
         });
+
+        // originally I had simply created the var without setting it to false, but there was a problem where if large passenger plane was added to the beginning and rest was cargo planes, it wouldn't get removed
         var removedAircraft = false;
         var index;
-        if(lastLargePassengerAircraft !== false){ //if large passenger aircraft exists, remove last one in queue
+        if(lastLargePassengerAircraft !== false){ // the !== false is a safeguard to prevent error where large passenger plane at beginning of array would not get removed
             removedAircraft = $scope.aircrafts[lastLargePassengerAircraft];
             index = lastLargePassengerAircraft;
             $scope.aircrafts.splice(lastLargePassengerAircraft, 1);
